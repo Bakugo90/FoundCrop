@@ -16,13 +16,13 @@ class Purchase(models.Model):
     """
     purchase model
     """
-    id = models.AutoField(primary_key=True)
+    purchase_id = models.AutoField(primary_key=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     produit = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.IntegerField(verbose_name='Quantity', default=0)
     price = models.FloatField(default=0.0)
-    date = models.DateTimeField(auto_now_add=True)
-    
+    date = models.DateTimeField(auto_now=True)
+
     class Meta:
         managed = False
         db_table = 'purchase'
