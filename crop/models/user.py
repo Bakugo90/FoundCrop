@@ -8,24 +8,23 @@ directory       : foundCrop/crop/models
 """
 from django.db import models
 from datetime import datetime
+from phone_field import PhoneField
 
 
 class User(models.Model):
     """
     user model
     """
-    user_id = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     first_name = models.CharField(verbose_name='First name',
                                   max_length=128, default="", null=True)
     last_name = models.CharField(verbose_name='Last name', max_length=128,
                                  default="", null=True)
     username = models.CharField(verbose_name='Username',
                                 max_length=128, null=False)
-    contact = models.CharField(verbose_name='Contact', max_length=30,
-                               null=False)
+    contact = PhoneField(blank=True, help_text='Contact phone number')
     email = models.EmailField(verbose_name='Email')
-    country = models.CharField(verbose_name='Country', max_length=60,
-                               default="Togo", null=False)
+    country = models.CharField(max_length=60, default="Togo", null=False)
     city = models.CharField(verbose_name='City', max_length=60, default="Lome",
                             null=False)
     statut = models.TextChoices("Client", "Trader")
@@ -33,7 +32,6 @@ class User(models.Model):
     password = models.CharField(verbose_name='Password', max_length=128,
                                 null=False)
     created = models.DateTimeField(auto_now_add=True)
-    friends = models.ManyToManyField('self')
 
     class Meta:
         managed = False
