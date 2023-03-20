@@ -7,25 +7,28 @@ description     : product from models
 directory       : foundCrop/crop/models
 """
 from django.db import models
-from datetime import datetime
 from crop.models.trader import Trader
+from crop.models.comment import Comment
 
 
 class Product(models.Model):
     """
     product model
     """
-    product_id = models.AutoField(primary_key=True)
+    CATEGORIES = (('fruits', 'Fruits'), ('beans', 'Beans'), ('grain', 'Grain'),
+                  ('legume', 'Legume'), ('tubers', 'Tubers'), ('diary', 'Dairy'),
+                  ('vegetables', 'Vegetables'), ('nuts', 'Nuts&Kernels'),
+                  ('animals', 'Animals'))
     author = models.ForeignKey(Trader, on_delete=models.CASCADE)
     prd_name = models.CharField(verbose_name='product name', max_length=128, null=False)
     stock = models.IntegerField(default=0)
     description = models.TextField(default='')
-    unit_price = models.FloatField(verbose_name='unit price', default=0.0)
-    wholesale = models.IntegerField(verbose_name='wholesale', default=0)
-    wholesale_price = models.FloatField(verbose_name='wholesale price', default=0.0)
-    picture = models.ImageField()
+    category = models.CharField(max_length=15, choices=CATEGORIES)
+    comments = models.ForeignKey(Comment, on_delete=models.CASCADE)
+    unit_price = models.FloatField(default=0.0)
+    picture = models.ImageField(upload_to="img/")
+    date = models.DateTimeField(auto_now_add=True, auto_now=False)
 
     class Meta:
         managed = False
         db_table = 'product'
-

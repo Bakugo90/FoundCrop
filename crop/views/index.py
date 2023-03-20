@@ -4,8 +4,10 @@
 from django.shortcuts import render
 from crop.models.product import Product
 
+
 def home(request):
     """
     """
-    products = Products.objects.all()
-    return render(request, 'index.html', { 'products': products })
+    products = Product.objects.all()
+    eats = ['Fruits', 'Beans', 'Grain', 'Legume', 'Tubers', 'Dairy', 'Vegetables', 'Nuts&Kernels', 'Animals']
+    return render(request, 'index.html', {'products': products, 'eats': eats})

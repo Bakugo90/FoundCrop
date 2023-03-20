@@ -1,0 +1,18 @@
+
+{% extends "base.html" %}
+  {% block mainclass %}py-4{% endblock %}
+  {% block mainh1 %}Formulaire{% endblock %}
+  {% block subtitle %}Formulaire{% endblock %}
+  {% block sectionclass %}profil{% endblock %}
+  {% block section %}
+    <form action="msg" method="post">
+      {% csrf_token %}
+      {{ cmt.as_p }}
+      <p>
+        <input type="submit" value="comment">
+      </p>
+    </form>
+  {% endblock %}
+{% block body %}
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+{% endblock %}
