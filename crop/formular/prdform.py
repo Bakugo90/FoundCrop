@@ -2,7 +2,7 @@
 """
 author      : Victor Doledji
 collaborator: Samadou Ouro
-file        : productform.py
+file        : prdform.py
 description : formular
 directory   : foundCrop/crop/forms
 """
@@ -16,4 +16,4 @@ class PrdForm(forms.ModelForm):
     """
     class Meta:
         model = Product
-        exclude = ['author', 'comments']
+        exclude = ['comments', 'date']

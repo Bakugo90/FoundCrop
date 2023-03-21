@@ -16,4 +16,4 @@ class TradForm(forms.ModelForm):
     """
     class Meta:
         model = Trader
-        exclude = ['id', 'created']
+        exclude = ['created']

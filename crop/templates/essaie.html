@@ -7,9 +7,9 @@
   {% block section %}
     <form action="msg" method="post">
       {% csrf_token %}
-      {{ cmt.as_p }}
+      {{ con.as_p }}
       <p>
-        <input type="submit" value="comment">
+        <input type="submit" value="submit">
       </p>
     </form>
   {% endblock %}

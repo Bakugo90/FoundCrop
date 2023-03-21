@@ -8,7 +8,6 @@ directory       : foundCrop/crop/models
 """
 from django.db import models
 from crop.models.trader import Trader
-from crop.models.comment import Comment
 
 
 class Product(models.Model):
@@ -24,7 +23,6 @@ class Product(models.Model):
     stock = models.IntegerField(default=0)
     description = models.TextField(default='')
     category = models.CharField(max_length=15, choices=CATEGORIES)
-    comments = models.ForeignKey(Comment, on_delete=models.CASCADE)
     unit_price = models.FloatField(default=0.0)
     picture = models.ImageField(upload_to="img/")
     date = models.DateTimeField(auto_now_add=True, auto_now=False)

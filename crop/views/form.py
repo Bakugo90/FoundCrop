@@ -7,11 +7,11 @@ description : formular
 directory   : foundCrop/crop/views
 """
 from django.shortcuts import render, redirect
-from crop.formular.cmtform import CmtForm
 from crop.formular.prdform import PrdForm
-from crop.formular.purchform import PurchForm
+from crop.formular.purform import PurForm
 from crop.formular.userform import UserForm
 from crop.formular.tradform import TradForm
+from django.contrib.auth.decorators import login_required
 
 
 def signinUser(request):
@@ -46,22 +46,7 @@ def signinTrader(request):
         return render(request, 'index.html', {'sign': sign})
 
 
-def msg(request):
-    """
-    message comment
-    """
-    if request.method == "POST":
-        cmt = CmtForm(request.POST)
-        if cmt.is_valid():
-            cmt.save()
-            return render(request, 'index.html')
-        else:
-            return render(request, 'index.html', {'cmt': cmt})
-    else:
-        cmt = CmtForm()
-        return render(request, 'index.html', {'cmt': cmt})
-
-
+@login_required
 def add_product(request):
     """
     add product
@@ -78,12 +63,13 @@ def add_product(request):
         return render(request, 'dashboard.html', {'add': add})
 
 
+@login_required
 def buy(request):
     """
     buy
     """
     if request.method == "POST":
-        pay = PurchForm(request.POST)
+        pay = PurForm(request.POST)
         if pay.is_valid():
             pay.save()
             sms = "payment success!!!"
@@ -91,5 +77,5 @@ def buy(request):
         else:
             return render(request, 'index.html', {'pay': pay})
     else:
-        pay = PurchForm()
+        pay = PurForm()
         return render(request, 'index.html', {'pay': pay})

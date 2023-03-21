@@ -7,7 +7,6 @@ description     : user from models
 directory       : foundCrop/crop/models
 """
 from django.db import models
-from phone_field import PhoneField
 
 
 class User(models.Model):
@@ -17,7 +16,7 @@ class User(models.Model):
     first_name = models.CharField(verbose_name='First name', max_length=128, default="", null=True)
     last_name = models.CharField(verbose_name='Last name', max_length=128, default="", null=True)
     username = models.CharField(verbose_name='Username', max_length=128, null=False)
-    contact = contact = PhoneField(blank=True, help_text='Contact phone number')
+    contact = models.CharField(verbose_name='Contact', max_length=30)
     email = models.EmailField(verbose_name='Email')
     country = models.CharField(verbose_name='Country', max_length=60, default="Togo", null=False)
     city = models.CharField(verbose_name='City', max_length=60, default="Lome", null=False)

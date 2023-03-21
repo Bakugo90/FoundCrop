@@ -2,42 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="52e9269a-322e-47e6-bbdb-f74e319ce81b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/foundCrop.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crop/formular/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crop/formular/cmtform.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crop/formular/prdform.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crop/formular/purchform.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crop/formular/tradform.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crop/formular/userform.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crop/static/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crop/static/css/main.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crop/static/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crop/static/img/fc-home-pic.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crop/static/img/found.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crop/static/img/profile-img.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crop/static/js/base.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crop/static/js/bootstrap.bundle.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crop/static/js/jquery-3.2.1.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crop/templates/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crop/templates/dashboard.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crop/templates/essaie.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crop/templates/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crop/templates/profil.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crop/views/form.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crop/views/sign.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crop/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crop/models/message.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop/models/comment.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/crop/formular/loginform.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/crop/tests/test_formular/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/crop/tests/test_models/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/crop/tests/test_views/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crop/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crop/formular/cmtform.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/crop/formular/prdform.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop/formular/prdform.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crop/formular/purchform.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop/formular/purform.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crop/formular/tradform.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop/formular/tradform.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crop/formular/userform.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop/formular/userform.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crop/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/crop/models/comment.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/crop/models/product.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop/models/product.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crop/models/purchase.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop/models/purchase.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/crop/models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop/models/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crop/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/crop/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/crop/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/crop/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crop/templates/essaie.html" beforeDir="false" afterPath="$PROJECT_DIR$/crop/templates/essaie.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crop/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/crop/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/crop/views/dash.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop/views/dash.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crop/views/form.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop/views/form.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/crop/views/index.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop/views/index.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crop/views/sign.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop/views/sign.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/foundCrop/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/foundCrop/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/foundCrop/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/foundCrop/urls.py" afterDir="false" />
     </list>
@@ -49,8 +36,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
