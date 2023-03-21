@@ -18,6 +18,5 @@ class Trader(User):
     gps = models.CharField(verbose_name='localisation', max_length=128, null=False)
 
     class Meta:
-        managed = False
         db_table = 'trader'
 

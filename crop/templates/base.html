@@ -59,28 +59,28 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="dashboard.html">
+        <a class="nav-link " href="{% url 'crop.views.dash.dashboard' %}">
           <i class="fa-solid fa-gauge"></i>
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="index.html">
+        <a class="nav-link collapsed" href="{% url 'crop.views.index.home' %}">
           <i class="fa-solid fa-square-nfi"></i>
           <span>Products</span>
         </a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="profil.html">
+        <a class="nav-link collapsed" href="{% url 'crop.views.dash.profile' %}">
           <i class="fa-solid fa-user"></i>
           <span>Profile</span>
         </a>
       </li>
 
       <li class="nav-item ">
-        <a class="nav-link log-out collapsed" href="index.html">
+        <a class="nav-link log-out collapsed" href="{% url 'crop.views.sign.logout' %}">
           <i class="fa-solid fa-right-from-bracket"></i>
           <span>Logout</span>
         </a>
@@ -97,7 +97,7 @@
           </h1>
           <nav>
               <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'crop.views.index.home' %}">Home</a></li>
                 <li class="breadcrumb-item active">
                     {% block subtitle %}{% endblock %}
                 </li>
@@ -113,6 +113,6 @@
   <!-- ======= Footer ======= -->
   <!-- End Footer -->
   {% block body %}{% endblock %}
-    <script src="../static/js/base.js"></script>
+    <script src="{% static 'js/base.js' %}"></script>
 </body>
 </html>

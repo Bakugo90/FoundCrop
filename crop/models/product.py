@@ -18,15 +18,13 @@ class Product(models.Model):
                   ('legume', 'Legume'), ('tubers', 'Tubers'), ('diary', 'Dairy'),
                   ('vegetables', 'Vegetables'), ('nuts', 'Nuts&Kernels'),
                   ('animals', 'Animals'))
-    author = models.ForeignKey(Trader, on_delete=models.CASCADE)
+    author = models.ForeignKey(Trader, on_delete=models.CASCADE, null=True)
     prd_name = models.CharField(verbose_name='product name', max_length=128, null=False)
     stock = models.IntegerField(default=0)
-    description = models.TextField(default='')
     category = models.CharField(max_length=15, choices=CATEGORIES)
     unit_price = models.FloatField(default=0.0)
     picture = models.ImageField(upload_to="img/")
     date = models.DateTimeField(auto_now_add=True, auto_now=False)
 
     class Meta:
-        managed = False
         db_table = 'product'

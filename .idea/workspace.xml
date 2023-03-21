@@ -2,30 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="52e9269a-322e-47e6-bbdb-f74e319ce81b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/crop/formular/loginform.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crop/tests/test_formular/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crop/tests/test_models/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crop/tests/test_views/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/crop/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crop/formular/cmtform.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/crop/formular/prdform.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop/formular/prdform.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crop/formular/purchform.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop/formular/purform.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crop/formular/tradform.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop/formular/tradform.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crop/formular/userform.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop/formular/userform.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crop/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/crop/models/comment.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/crop/models/product.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop/models/product.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crop/models/purchase.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop/models/purchase.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crop/models/trader.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop/models/trader.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/crop/models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop/models/user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/crop/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/crop/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crop/templates/essaie.html" beforeDir="false" afterPath="$PROJECT_DIR$/crop/templates/essaie.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crop/templates/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/crop/templates/dashboard.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/crop/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/crop/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crop/templates/profil.html" beforeDir="false" afterPath="$PROJECT_DIR$/crop/templates/profil.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/crop/views/dash.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop/views/dash.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crop/views/form.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop/views/form.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/crop/views/index.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop/views/index.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/crop/views/sign.py" beforeDir="false" afterPath="$PROJECT_DIR$/crop/views/sign.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foundCrop/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/foundCrop/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/foundCrop/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/foundCrop/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -71,6 +62,29 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Working\foundCrop\crop\static\img" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="python mana" type="PythonConfigurationType" factoryName="Python">
+      <module name="foundCrop" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\User\anaconda3\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="mana" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

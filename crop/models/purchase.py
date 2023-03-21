@@ -15,13 +15,12 @@ class Purchase(models.Model):
     """
     purchase model
     """
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-    products = models.ForeignKey(Product, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    products = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
     quantity = models.IntegerField(verbose_name='Quantity', default=0)
     price = models.FloatField(default=0.0)
     date = models.DateTimeField(auto_now=False, auto_now_add=True)
 
     class Meta:
-        managed = False
         db_table = 'purchase'
 

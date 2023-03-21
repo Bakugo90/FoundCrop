@@ -14,7 +14,7 @@ from crop.models.product import Product
 
 
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('first_name', 'last_name', 'username', 'contact', 'email', 'country', 'city', 'status', 'password')
+    list_display = ('first_name', 'last_name', 'username', 'contact', 'email', 'country', 'city', 'status', 'password', 'about')
     list_filter = ('username', 'email', 'created')
     ordering = ('first_name', 'created')
     search_fields = ('username', 'email', 'country', 'city', 'status')
@@ -36,7 +36,7 @@ class PurchaseAdmin(admin.ModelAdmin):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('author', 'prd_name', 'stock', 'description', 'category', 'comments', 'unit_price')
+    list_display = ('author', 'prd_name', 'stock', 'category', 'unit_price')
     list_filter = ('author', 'prd_name', 'category', 'unit_price')
     ordering = ('category', 'prd_name', 'unit_price')
     search_fields = ('prd_name', 'category', 'unit_price')

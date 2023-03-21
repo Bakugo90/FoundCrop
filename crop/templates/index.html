@@ -1,5 +1,6 @@
 
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -25,7 +26,10 @@
       <div class="row align-items-center py-3 px-xl-5">
           <div class="col-lg-3 d-none d-lg-block">
               <a href="" class="text-decoration-none">
-                  <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">Found</span>Crop</h1>
+                  <h1 class="m-0 display-5 font-weight-semi-bold">
+                      <span class="text-primary font-weight-bold border px-3 mr-1">Found</span>
+                      Crop
+                  </h1>
               </a>
           </div>
           <div class="col-lg-6 col-6 text-left">
@@ -81,7 +85,7 @@
               <div id="header-carousel" class="carousel slide" data-ride="carousel">
                   <div class="carousel-inner">
                       <div class="carousel-item active" style="height: 410px;">
-                          <img class="img-fluid" src="../static/img/fc-home-pic.jpg" alt="Image">
+                          <img class="img-fluid" src="{% static 'img/fc-home-pic.jpg' %}" alt="Image">
                           <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                               <div class="p-3" style="max-width: 700px;">
                                   <h3 class="display-4 text-white font-weight-semi-bold mb-4" id="text">We help you find a crop more faster</h3>
@@ -101,6 +105,33 @@
 <section class="py-5">
   <div class="container px-4 px-lg-5 mt-5">
       <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+          {% for product in products %}
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Sale badge-->
+                        <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
+                            Sale
+                        </div>
+                        <!-- Product image-->
+                        <img class="card-img-top" src="{{ product.picture }}" alt="..." />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">{{ product.prd_name }}</h5>
+                                <!-- Product price-->
+                                <span class="text-muted text-decoration-line-through">{{ product.unit_price }}</span>
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center">
+                                <a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+          {% endfor %}
           <div class="col mb-5">
               <div class="card h-100">
                   <!-- Product image-->
