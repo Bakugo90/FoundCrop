@@ -12,6 +12,35 @@
   scroll-behavior: smooth;
 }
 
+.popuptext {
+  display: none;
+  position: absolute;
+  top: 50%;
+  right: 70px;
+  z-index: 1;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.popuptext ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.popuptext ul li {
+  margin-bottom: 5px;
+}
+
+.popuptext ul li a {
+  display: block;
+  padding: 5px;
+  text-decoration: none;
+  color: #333;
+}
+
+
 body {
   font-family: "Poppins", sans-serif;
   background: #f6f9ff;
