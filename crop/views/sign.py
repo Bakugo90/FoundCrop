@@ -21,7 +21,7 @@ def connect(request):
             username = con.cleaned_data['username']
             password = con.cleaned_data['password']
             user = authenticate(username=username, password=password)
-            if user:
+            if user is not None:
                 login(request, user)
                 return redirect("/dashboard")
         else:
