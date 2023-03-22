@@ -34,7 +34,7 @@ APPEND_SLASH = True
 
 ALLOWED_HOSTS = []
 
-LOGIN_URL = '/login/'
+LOGIN_URL = '/connect/'
 
 # Application definition
 

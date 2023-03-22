@@ -8,8 +8,8 @@ directory   : foundCrop/crop/views
 """
 from django.shortcuts import render
 from crop.models.product import Product
-from crop.models.purchase import Purchase
-from crop.models.user import User
+from crop.models.agent import Agent
+from crop.models.buy import Buy
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
 
@@ -19,28 +19,28 @@ def dashboard(request):
     """
     dashboard view
     """
-    purchases = Purchase.objects.filter(products=request.user)
+    buys = Buy.objects.filter(agent=request.user)
     nb_sal = 0
     price_rev = 0.0
     nb_cust = 0
     sales = 0
-    for prd in purchases:
+    for prd in buys:
         if prd.date.date() == datetime.date():
             nb_sal += prd.quantity
         if prd.date.year == datetime.year and prd.date.month == datetime.month:
             price_rev += prd.price
 
-    products = Product.objects.filter(author=request.user)
+    products = Product.objects.filter(agent=request.user)
     total_price = 0.0
     for prd in products:
         total_price += prd.unit_price * prd.stock
         sales = (nb_sal, nb_sal / len(products))
 
     for product in products:
-        nb_cust += len(set([purchase.author for purchase in Purchase.objects.filter(products=product)]))
+        nb_cust += len(set([purchase.author for purchase in Buy.objects.filter(products=product)]))
 
     revenue = (price_rev, price_rev / total_price)
-    cust = (nb_cust, User.objects.all())
+    cust = (nb_cust, Agent.objects.all())
     dash = {'sales': sales, 'revenue': revenue, 'cust': cust}
     return render(request, 'dashboard.html', context=dash)
 
@@ -50,6 +50,4 @@ def profile(request):
     """
     profile view
     """
-    products = Product.objects.filter(author=request.user)
-    context = {'products': products}
-    return render(request, 'profile.html', context)
+    return render(request, 'profile.html')

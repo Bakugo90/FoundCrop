@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Link to css -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sign.css' %}">
+     <!-- Favicon -->
+     <link href="img/favicon.ico" rel="icon">
+
+     <!-- Google Web Fonts -->
+     <link rel="preconnect" href="https://fonts.gstatic.com">
+     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+     <!-- Font Awesome -->
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <title>Found-Crop</title>
+</head>
+<body>
+    <!-- Topbar Start -->
+    <div class="container-fluid">
+      <div class="row align-items-center py-3 px-xl-5">
+          <div class="col-lg-3 d-none d-lg-block">
+              <a href="" class="text-decoration-none">
+                  <h1 class="m-0 display-5 font-weight-semi-bold">
+                      <span class="text-primary font-weight-bold border px-3 mr-1">Found</span>
+                      Crop
+                  </h1>
+              </a>
+          </div>
+      </div>
+  </div>
+  <div class="sign">
+      <h1>Sign in</h1>
+      <form action="/signin/" method="post">
+          {% csrf_token %}
+          {{ sign.as_p }}
+          <input type="submit" value="sign in">
+      </form>
+  </div>
+</body>
+</html>

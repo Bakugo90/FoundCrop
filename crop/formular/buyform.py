@@ -2,18 +2,19 @@
 """
 author      : Victor Doledji
 collaborator: Samadou Ouro
-file        : commentform.py
+file        : cmtform.py
 description : formular
 directory   : foundCrop/crop/forms
 """
 from django import forms
-from crop.models.trader import Trader
+from crop.models.buy import Buy
 
 
-class TradForm(forms.ModelForm):
+class BuyForm(forms.ModelForm):
     """
-    user formular
+    purchase formular
     """
+
     class Meta:
-        model = Trader
-        exclude = ['created']
+        model = Buy
+        exclude = []

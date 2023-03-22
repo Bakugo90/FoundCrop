@@ -11,26 +11,29 @@ from crop.formular.loginform import LoginForm
 from django.contrib.auth import authenticate, login, logout
 
 
-def login(request):
+def connect(request):
     """
     login
     """
-    error = False
     if request.method == "POST":
         con = LoginForm(request.POST)
         if con.is_valid():
             username = con.cleaned_data['username']
             password = con.cleaned_data['password']
-            user = authenticate(request, username=username, password=password)
+            user = authenticate(username=username, password=password)
             if user:
                 login(request, user)
-            else:
-                error = True
+                return redirect("/dashboard")
+        else:
+            return render(request, 'login.html', locals())
     else:
         con = LoginForm()
-        return render(request, 'essaie.html', locals())
+        return render(request, 'login.html', locals())
 
 
-def logout(request):
+def outlog(request):
+    """
+    logout
+    """
     logout(request)
-    return redirect('/login')
+    return redirect('/connect')

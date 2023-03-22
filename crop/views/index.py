@@ -19,5 +19,6 @@ def home(request):
     else:
         products = Product.objects.all()
     eats = ['Fruits', 'Beans', 'Grain', 'Legume', 'Tubers', 'Dairy', 'Vegetables', 'Nuts&Kernels', 'Animals']
-    return render(request, 'index.html', {'products': products, 'eats': eats})
+    eats.sort()
+    return render(request, 'index.html', {'products': products.order_by('product_name'), 'eats': eats})
 

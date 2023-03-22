@@ -14,6 +14,7 @@ class PrdForm(forms.ModelForm):
     """
     product formular
     """
+
     class Meta:
         model = Product
-        exclude = ['date']
+        exclude = []

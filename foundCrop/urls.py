@@ -24,10 +24,9 @@ urlpatterns = [
     path('home/', index.home, name='home'),
     path('dashboard/', dash.dashboard, name='dashboard'),
     path('profile/', dash.profile, name='profile'),
-    path('login/', sign.login, name='login'),
-    path('logout/', sign.logout, name='logout'),
-    path('signinUser/', form.signinUser, name='user_form'),
-    path('signinTrader', form.signinTrader, name='trader_form'),
+    path('connect/', sign.connect, name='connect'),
+    path('outlog/', sign.outlog, name='outlog'),
+    path('signin/', form.signin, name='signin'),
     path('add_product/', form.add_product, name='add_product'),
     path('buy/', form.buy, name='buy'),
 ]
