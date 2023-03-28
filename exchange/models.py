@@ -11,7 +11,7 @@ class User(AbstractUser):
     country = models.CharField(max_length=132, default='------------', choices=COUNTRY)
     state = models.CharField(max_length=16, default='')
     sexe = models.CharField(max_length=1, choices=SEXE, default='')
-    is_prof = is_client = models.BooleanField(default=False)
+    is_prof = models.BooleanField(default=False)
     is_client = models.BooleanField(default=True)
 
     def __str__(self) -> str:

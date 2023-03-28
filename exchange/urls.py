@@ -6,9 +6,11 @@ from exchange.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home', home, name='home'),
+    path('category/<str:name>', category, name='category'),
 
     path('dashboard', dashboard, name='dashboard'),
     path('profile', profile, name='profile'),
+    path('profile/card', payment, name='payment'),
     path('logout',  output, name='logout'),
 
     path('product/view',  productView, name='productView'),

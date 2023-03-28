@@ -169,7 +169,7 @@ COUNTRY = (
     ("South Sudan", "South Sudan"),
     ("Spain", "Spain"),
     ("Sri Lanka", "Sri Lanka"),
-    ("Sudan", "Sudan")
+    ("Sudan", "Sudan"),
     ("Suriname", "Suriname"),
     ("Sweden", "Sweden"),
     ("Switzerland", "Switzerland"),
@@ -217,3 +217,17 @@ CATEGORIES = (
     ('Nuts&Kernels', 'nuts&kernels'),
     ('Animals', 'animals')
     )
+
+from .models import *
+
+USERS = User.objects.all()
+PROFESSIONAL_USERS = User.objects.filter(is_prof=True)
+CLIENT_USERS = User.objects.filter(is_client=True)
+
+PRODUCTS = Product.objects.all()
+
+PRODUCTS_CATEGORIES = {}
+for cat in CATEGORIES:
+    PRODUCTS_CATEGORIES[cat[0]] = list(PRODUCTS.filter(category=cat[1]))
+
+CMD = Command.objects.all()

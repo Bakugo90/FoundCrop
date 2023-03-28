@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
-from exchange import CATEGORIES, COUNTRY, SEXE
+from exchange import CATEGORIES, COUNTRY, PRODUCTS, PRODUCTS_CATEGORIES, SEXE
 from .models import Card, Command, Detail, Product
-from .forms import DetailForm, ProductCreateForm, UserForm
+from .forms import CardForm, DetailForm, ProductCreateForm, UserForm
 
 # Create your views here.
 
@@ -12,7 +12,7 @@ def home(request):
     """
     method of index.htm file
     """
-    products = Product.objects.all()
+    products = PRODUCTS
 
     if request.method == 'GET':
         search = request.GET.get('search')
@@ -20,13 +20,27 @@ def home(request):
             products = Product.objects.filter(name__icontains=search)
         
     context = {
-        'search': search,
         'food': CATEGORIES,
         'products': products
     }
     return render(request, 'index.html', context)
 
 
+def category(request, name):
+    """
+    all product from same category
+    """
+    products = PRODUCTS_CATEGORIES[name]
+    if request.method == 'GET':
+        search = request.GET.get('search')
+        if search is not None:
+            products = products.filter(name__icontains=search)
+
+    context = {
+        'products': products,
+        'food': CATEGORIES
+    }
+    return render(request, 'category.html', context)
 # -----------------------------------------------------------------------------
 
 # user fonction
@@ -38,7 +52,7 @@ def dashboard(request):
     dashboard statistiques
     """
     if request.user.is_client:
-        card  = Card.objects.get(Card, user=request.user)
+        card  = Card.objects.get(user=request.user)
         item = Command.objects.filter(user=card.user)
         # nbre de command effectuer
         sale = item.count()
@@ -81,7 +95,7 @@ def profile(request):
         form.username = request.POST['uisername']
         form.email = request.POST['email']
         form.address = request.POST['address']
-        form.picture = request.POST['']
+        form.picture = request.POST['picture']
         form.country = request.POST['country']
         form.state = request.POST['state']
         form.sexe = request.POST['sexe']
@@ -97,6 +111,25 @@ def profile(request):
     return render(request, 'auth/profile.html', context)
 
 
+# add payment method
+def payment(request):
+    """
+    add card form
+    """
+    form = CardForm()
+    if request.method == "POST":
+        form = CardForm(request.POST)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.user = request.user
+            obj.save()
+
+    context = {
+        'form': form
+    }
+    return render(request, 'profile.html', context)
+
+
 # logout
 def output(request):
     """
@@ -105,9 +138,7 @@ def output(request):
     logout(request)
     return redirect('home')
 # --------------------------------------------------------------------------------
-
-# product
-
+## product
 
 # view
 def productView(request):
@@ -165,6 +196,9 @@ def productDel(request, prd_id):
 
 # update
 def productUpdate(request, prd_id):
+    """
+    update product
+    """
     obj = get_object_or_404(Product, id=prd_id)
 
     form = ProductCreateForm(request.POST or None, instance=obj)
@@ -245,9 +279,12 @@ def del_to_cart(request, detail_id):
 def Update_to_cart(request, detail_id):
     detail = get_object_or_404(Detail, id=detail_id)
 
+    form = DetailForm(request.POST or None, instance=detail)
+    if form.is_valid():
+        form.save()
 
     context = {
-
+        'form': form
     }
     return render(request, 'cmd/update_to_cart.html', context)
 
@@ -255,8 +292,13 @@ def Update_to_cart(request, detail_id):
 # buy
 def buy(request):
 
-    context = {
+    cmd = Command.objects.filter(valid=True, pay=False)
+    details = Detail.objects.filter(cmd=cmd, active=True)
 
+    # le virement
+    context = {
+        'cmd': cmd,
+        'details': details
     }
     return render(request, 'cmd/buy.html', context)
 
@@ -295,7 +337,6 @@ def signup(request):
         if form.is_valid():
             form.save()
             return redirect('signin')
-
     context = {
         'form': form
     }
