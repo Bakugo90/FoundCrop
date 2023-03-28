@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
-from exchange import CATEGORIES
-from .models import Command, Detail, Product
+from exchange import CATEGORIES, COUNTRY
+from .models import Card, Command, Detail, Product
 from .forms import DetailForm, UserForm
 
 # Create your views here.
@@ -34,6 +34,31 @@ def home(request):
 
 # dashbord
 def dashboard(request):
+    """
+    dashboard statistiques
+    """
+    if request.user.is_client:
+        card  = Card.objects.get(user=request.user)
+        item = Command.objects.filter(user=card.user)
+        # nbre de command effectuer
+        sale = item.count()
+        # frais total de tous les command
+        revenue = sum([obj.total() for obj in item])
+        customers = 1
+    else:
+        products = Product.objects.filter(provider=request.user)
+        details = Detail.objects.all()
+        # nombre total de vente
+        sale = 0
+        # gains total
+        revenue = 0
+        # nbre total de client
+        customers = 0
+        for detail in details:
+            if detail.product.Provider in [prod.provider for prod in products]:
+                revenue += detail.product.price
+                sale += 1
+        customers = len(set([cmd.card.user for cmd in Command.objects.all()]))
 
     context = {
         'sale' : sale,
@@ -45,11 +70,35 @@ def dashboard(request):
 
 # profile
 def profile(request):
-    
-    context = {
+    """
+    update profile
+    """
 
+    form = UserForm(request.POST or None, instance=request.user)
+    if form.is_valid():
+        form.first_name = request.POST['']
+        form.last_name
+        form.username
+        form.email
+        form.address
+        form.
+        form.
+        form.
+        form.
+        form.
+        form.
+        form.
+        form.
+        form.
+        form.
+        form.
+
+    context = {
+        'form': form,
+        'country': COUNTRY,
+        'sexe': sexe
     }
-    return render(request, 'auth/profile.html')
+    return render(request, 'auth/profile.html', context)
 
 
 # logout

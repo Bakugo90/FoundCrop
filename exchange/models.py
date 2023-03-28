@@ -6,12 +6,12 @@ from exchange import CATEGORIES, COUNTRY, SEXE
 # Create your models here.
 
 class User(AbstractUser):
-    address = models.CharField(max_length=132)
+    address = models.CharField(max_length=132, default='')
     picture = models.EmailField(upload_to='images', blank=True)
-    country = models.CharField(max_length=132, choices=COUNTRY)
-    state = models.CharField(max_length=16)
-    sexe = models.CharField(max_length=1, choices=SEXE)
-    is_provider = is_client = models.BooleanField(default=False)
+    country = models.CharField(max_length=132, default='------------', choices=COUNTRY)
+    state = models.CharField(max_length=16, default='')
+    sexe = models.CharField(max_length=1, choices=SEXE, default='')
+    is_prof = is_client = models.BooleanField(default=False)
     is_client = models.BooleanField(default=True)
 
     def __str__(self) -> str:
@@ -20,25 +20,20 @@ class User(AbstractUser):
 
 class Client(User):
     is_client = models.BooleanField(default=True)
-    zip_code = models.CharField(max_length=16)
-    card_name = models.CharField(max_length=16)
-    card_number = models.CharField(max_length=32)
-    expiration = models.DateField()
-    cvv = models.CharField(verbose_name='CVV', max_length=32)
 
     def __str__(self) -> str:
         return "{}:{}".format('client', self.username)
 
 
-class Provider(User):
-    is_provider = is_client = models.BooleanField(default=True)
+class Professional(User):
+    is_prof = is_client = models.BooleanField(default=True)
 
     def __str__(self) -> str:
         return "{}:{}".format('provider', self.username)
 
 
 class Product(models.Model):
-    Provider = models.ForeignKey(Provider, related_name='products', on_delete=models.PROTECT)
+    Professional = models.ForeignKey(Professional, related_name='products', on_delete=models.PROTECT)
     name = models.CharField(max_length=50)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     picture = models.ImageField(upload_to='images', blank=True)
@@ -55,8 +50,20 @@ class Product(models.Model):
         return reverse('productUpdate', kwargs={'prd_id': self.pk})
 
 
+class Card(models.Model):
+    user = models.ForeignKey(User, related_name='cards', on_delete=models.PROTECT)
+    zip_code = models.CharField(max_length=16)
+    card_name = models.CharField(max_length=16)
+    card_number = models.CharField(max_length=32)
+    expiration = models.DateField()
+    cvv = models.CharField(verbose_name='CVV', max_length=32)
+
+    def __str__(self) -> str:
+        return "MasterCard:{}".format(self.user)
+
+
 class Command(models.Model):
-    user = models.ForeignKey(User, on_delete=models.PROTECT)
+    card = models.ForeignKey(Card, related_name='commands', on_delete=models.PROTECT)
     invoice = models.DecimalField(max_digits=50, decimal_places=2)
     # pour savoir sur quel commande ajouter le produits
     valid = models.BooleanField(default=True)
@@ -64,7 +71,7 @@ class Command(models.Model):
     pay = models.BooleanField(default=False)
 
     def __str__(self) -> str:
-        return "{}-{}".format('Command', self.user.username)
+        return "{}-{}".format('Command', self.card.user.username)
 
     @property
     def total(self):
@@ -76,11 +83,11 @@ class Command(models.Model):
 
 
 class Detail(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.PROTECT)
-    cmd = models.ForeignKey(Command, on_delete=models.PROTECT)
+    product = models.ForeignKey(Product, related_name='details', on_delete=models.PROTECT)
+    cmd = models.ForeignKey(Command, related_name='details', on_delete=models.PROTECT)
     count = models.IntegerField()
     # pour ne pas ajouter des produits d'ancien facture
-    actve = models.BooleanField(default=True)
+    active = models.BooleanField(default=True)
 
     def __str__(self) -> str:
         return "{}:{}:{}".format(self.cmd, self.product, self.count)

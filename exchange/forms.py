@@ -26,19 +26,27 @@ class UserForm(UserCreationForm):
             'class': 'form-control'
         }
     ))
-    email = password1 = forms.CharField(label='', widget=forms.EmailInput(
+    email = forms.CharField(label='', widget=forms.EmailInput(
         attrs={
             'placeholder': 'Email',
             'class': 'form-control'
         }
-    ))
+    ), required=False)
+    address = forms.CharField(label='', widget=forms.TextInput(
+        attrs={
+            'placeholder': 'Address',
+            'class': 'form-control',
+            
+        }
+    ), required=False, disabled=True)
+    picture
     password1 = forms.CharField(label='', widget=forms.PasswordInput(
         attrs={
             'placeholder': 'Password',
             'class': 'form-control'
         }
     ))
-    password2 = password1 = forms.CharField(label='', widget=forms.PasswordInput(
+    password2 = forms.CharField(label='', widget=forms.PasswordInput(
         attrs={
             'placeholder': 'Confirm Password',
             'class': 'form-control'
@@ -52,6 +60,13 @@ class UserForm(UserCreationForm):
             'last_name',
             'username',
             'email',
+            'address',
+            'picture',
+            'country',
+            'state',
+            'sexe',
+            'is_prof',
+            'is_client',
             'password1',
             'password2'
         }
