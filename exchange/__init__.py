@@ -1,3 +1,6 @@
+"""
+exchange app constants
+"""
 
 COUNTRY = (
     ("Afghanistan", "Afghanistan"),

@@ -33,7 +33,7 @@ class Professional(User):
 
 
 class Product(models.Model):
-    Professional = models.ForeignKey(Professional, related_name='products', on_delete=models.PROTECT)
+    professional = models.ForeignKey(Professional, related_name='products', on_delete=models.PROTECT)
     name = models.CharField(max_length=50)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     picture = models.ImageField(upload_to='images', blank=True)
@@ -64,10 +64,10 @@ class Card(models.Model):
 
 class Command(models.Model):
     card = models.ForeignKey(Card, related_name='commands', on_delete=models.PROTECT)
-    invoice = models.DecimalField(max_digits=50, decimal_places=2)
+    total = models.DecimalField(max_digits=50, decimal_places=2)
     # pour savoir sur quel commande ajouter le produits
     valid = models.BooleanField(default=True)
-    # pour faire payer uniquement la facture en cours...
+    # pour savoir si la command est payer
     pay = models.BooleanField(default=False)
 
     def __str__(self) -> str:
@@ -95,3 +95,6 @@ class Detail(models.Model):
     @property
     def total(self):
         return round(self.product.price * self.count, 2)
+    
+    def get_absolute_url(self):
+        return reverse('Update_to_cart', kwargs={'detail_id': self.pk})

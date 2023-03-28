@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
-from exchange import CATEGORIES, COUNTRY
+from exchange import CATEGORIES, COUNTRY, SEXE
 from .models import Card, Command, Detail, Product
-from .forms import DetailForm, UserForm
+from .forms import DetailForm, ProductCreateForm, UserForm
 
 # Create your views here.
 
@@ -38,7 +38,7 @@ def dashboard(request):
     dashboard statistiques
     """
     if request.user.is_client:
-        card  = Card.objects.get(user=request.user)
+        card  = Card.objects.get(Card, user=request.user)
         item = Command.objects.filter(user=card.user)
         # nbre de command effectuer
         sale = item.count()
@@ -46,7 +46,7 @@ def dashboard(request):
         revenue = sum([obj.total() for obj in item])
         customers = 1
     else:
-        products = Product.objects.filter(provider=request.user)
+        products = Product.objects.filter(professional=request.user)
         details = Detail.objects.all()
         # nombre total de vente
         sale = 0
@@ -55,7 +55,7 @@ def dashboard(request):
         # nbre total de client
         customers = 0
         for detail in details:
-            if detail.product.Provider in [prod.provider for prod in products]:
+            if detail.product.professional in [prod.professional for prod in products]:
                 revenue += detail.product.price
                 sale += 1
         customers = len(set([cmd.card.user for cmd in Command.objects.all()]))
@@ -74,29 +74,25 @@ def profile(request):
     update profile
     """
 
-    form = UserForm(request.POST or None, instance=request.user)
+    form = UserForm(request.POST or None, request.FILES or None, instance=request.user)
     if form.is_valid():
-        form.first_name = request.POST['']
-        form.last_name
-        form.username
-        form.email
-        form.address
-        form.
-        form.
-        form.
-        form.
-        form.
-        form.
-        form.
-        form.
-        form.
-        form.
-        form.
+        form.first_name = request.POST['first_name']
+        form.last_name = request.POST['last_name']
+        form.username = request.POST['uisername']
+        form.email = request.POST['email']
+        form.address = request.POST['address']
+        form.picture = request.POST['']
+        form.country = request.POST['country']
+        form.state = request.POST['state']
+        form.sexe = request.POST['sexe']
+        form.is_prof = request.POST['is_prof']
+        form.is_client = request.POST['is_client']
+        form.save()
 
     context = {
         'form': form,
         'country': COUNTRY,
-        'sexe': sexe
+        'sexe': SEXE
     }
     return render(request, 'auth/profile.html', context)
 
@@ -115,36 +111,69 @@ def output(request):
 
 # view
 def productView(request):
+    """
+    product view
+    """
+    products = Product.objects.filter(user=request.user)
+    
+    if request.method == "GET":
+        search = request.GET.get('search')
+        if search is not None:
+            products = Product.objects.filter(name__icontains=search)
 
     context = {
-
+        'products': products
     }
     return render(request, 'product/view.html', context)
 
 
 #add
 def productAdd(request):
+    """
+    product create
+    """
+    form = ProductCreateForm(request.POST or None)
+    if form.is_valid():
+        obj = form.save(commit=False)
+        obj.user = request.user
+        obj.save()
+        return redirect('productView')
 
     context = {
-
+        'form': form,
     }
     return render(request, 'product/add.html', context)
 
 
 # del
-def productDel(request):
+def productDel(request, prd_id):
+    """
+    product delete
+    """
+    obj = get_object_or_404(Product, id=prd_id)
+    free = obj.name
+
+    if request.method == 'POST':
+        obj.delete()
+        return redirect('productView')
 
     context = {
-
+        'name': free
     }
     return render(request, 'product/del.html', context)
 
 
 # update
-def productUpdate(request):
+def productUpdate(request, prd_id):
+    obj = get_object_or_404(Product, id=prd_id)
+
+    form = ProductCreateForm(request.POST or None, instance=obj)
+    if form.is_valid():
+        form.save()
+        return redirect('productView')
 
     context = {
-
+        'form': form
     }
     return render(request, 'product/update.html', context)
 
@@ -154,9 +183,12 @@ def productUpdate(request):
 
 # view
 def cmdView(request):
-
+    card = Card.objects.filter(user=request.user)
+    cmd = Command.objects.get(card=card, valid=True, pay=False)
+    details = Detail.objects.filter(cmd=cmd, active=True)
     context = {
-
+        'details': details,
+        'cmd': cmd
     }
     return render(request, 'cmd/view.html', context)
 
@@ -170,13 +202,14 @@ def Add_to_cart(request, product_id):
 
     form = DetailForm()
     if request.method == 'POST':
-        form = DetailForm(request.POST)
+        form = DetailForm(request.POST, request.FILES)
         if form.is_valid():
             obj = form.save(commit=False)
             obj.cmd = Command.objects.get(valid=True)
             obj.product = product
             obj.save()
             return redirect('home')
+
     context = {
         'form': form
     }
@@ -184,24 +217,34 @@ def Add_to_cart(request, product_id):
 
 
 # del
-def cmdDel(request):
+def cmdDel(request, cmd_id):
+    cmd = get_object_or_404(Command, id=cmd_id)
 
+    if request.method == 'POST':
+        cmd.delete()
+        return redirect('dashboard')
     context = {
-
+        'cmd': cmd
     }
     return render(request, 'cmd/del.html', context)
 
 
-def del_to_cart(request):
+def del_to_cart(request, detail_id):
+    detail = get_object_or_404(Detail, id=detail_id)
 
+    if request.method == 'POST':
+        detail.delete()
+        return redirect('cmdView')
     context = {
-
+        'detail': detail
     }
     return render(request, 'cmd/del_to_cart.html', context)
 
 
 # update
-def Update_to_cart(request):
+def Update_to_cart(request, detail_id):
+    detail = get_object_or_404(Detail, id=detail_id)
+
 
     context = {
 
